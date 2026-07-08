@@ -65,10 +65,13 @@ FALLBACK_RESPONSE = {
 
 app = FastAPI(title="AI API Doc & Testing Portal Backend")
 
-# Allow the Vite dev server to call this backend directly during local dev.
+# Allow both local development and the live deployed frontend to call this backend.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://api-doc-portal-ahpe.onrender.com",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
